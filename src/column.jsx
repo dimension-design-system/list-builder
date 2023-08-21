@@ -43,10 +43,17 @@ const AddToGroupBar = styled.div`
 `;
 
 export default class Column extends React.Component {
-  selectAll = false;
+  state = {
+    selectAll: false,
+  };
 
   handleSelectAllChange = () => {
-    this.selectAll = !this.selectAll;
+    this.setState(
+      (prevState) => ({
+        selectAll: !prevState.selectAll,
+      }),
+      () => {}
+    );
   };
 
   render() {
@@ -58,14 +65,14 @@ export default class Column extends React.Component {
           <button>filter</button>
           <button>sort</button>
         </ActionBar>
-        <pre>{"select all state " + this.selectAll}</pre>
+        <pre>{"select all state " + this.state.selectAll}</pre>
         <SelectAll>
           <input
             type="checkbox"
             id="select-all"
             name="select-all"
             onChange={this.handleSelectAllChange}
-            checked={this.selectAll}
+            checked={this.state.selectAll}
           />
           <label for="select-all">Select All Accounts</label>
         </SelectAll>
