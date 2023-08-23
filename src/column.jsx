@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
-import Task from "./task";
+import Account from "./account";
 
 const Container = styled.div`
   display: flex;
@@ -87,7 +87,7 @@ export default class Column extends React.Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.tasks.map((task, index) => (
-                <Task key={task.id} task={task} index={index} />
+                <Account key={task.id} task={task} index={index} />
               ))}
               {provided.placeholder}
             </AccountList>

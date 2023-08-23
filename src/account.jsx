@@ -81,7 +81,7 @@ const SVBInformation = styled(RowSection)`
   flex: 0;
 `;
 
-export default class Task extends React.Component {
+export default class Account extends React.Component {
   render() {
     // const isDragDisabled = this.props.task.id === "task-1";
     return (
