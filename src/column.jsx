@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Account from "./account";
 
+const DebugContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,12 +48,39 @@ const BottomHalf = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   border-radius: 0 0 10px 10px;
   padding: 16px 0;
   border: 1px solid var(--neutrals-grey-300, #e0e0e0);
   border-top: none;
   margin: 0 24px 24px 24px;
   padding: 16px 24px;
+`;
+const TotalAccountsSelected = styled.h3`
+  color: #000;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+`;
+const AddToGroupButton = styled.button`
+  border-radius: 4px;
+  border: 2px solid var(--primary-primary-500, #007db8);
+  display: flex;
+  height: 30px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background-color: #fff;
+  color: var(--primary-primary-500, #007db8);
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
 `;
 
 export default class Column extends React.Component {
@@ -67,49 +99,51 @@ export default class Column extends React.Component {
 
   render() {
     return (
-      <Container>
-        <TopHalf>
-          <Title>{this.props.column.title}</Title>
-          <ActionBar>
-            <input type="text"></input>
-            <button>filter</button>
-            <button>sort</button>
-          </ActionBar>
-          <pre>{"select all state " + this.state.selectAll}</pre>
-          <SelectAll>
-            <input
-              type="checkbox"
-              id="select-all"
-              name="select-all"
-              onChange={this.handleSelectAllChange}
-              checked={this.state.selectAll}
-            />
-            <label for="select-all">Select All Accounts</label>
-          </SelectAll>
-          <Droppable
-            droppableId={this.props.column.id}
-            isDropDisabled={this.props.isDropDisabled}
-            // type={this.props.column.id === "column-3" ? "done" : "active"}
-          >
-            {(provided, snapshot) => (
-              <AccountList
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-                isDraggingOver={snapshot.isDraggingOver}
-              >
-                {this.props.tasks.map((task, index) => (
-                  <Account key={task.id} task={task} index={index} />
-                ))}
-                {provided.placeholder}
-              </AccountList>
-            )}
-          </Droppable>
-        </TopHalf>
-        <BottomHalf>
-          <h3>0 Accounts Selected</h3>
-          <button>Add to Group</button>
-        </BottomHalf>
-      </Container>
+      <DebugContainer>
+        <Container>
+          <TopHalf>
+            <Title>{this.props.column.title}</Title>
+            <ActionBar>
+              <input type="text"></input>
+              <button>filter</button>
+              <button>sort</button>
+            </ActionBar>
+            <SelectAll>
+              <input
+                type="checkbox"
+                id="select-all"
+                name="select-all"
+                onChange={this.handleSelectAllChange}
+                checked={this.state.selectAll}
+              />
+              <label for="select-all">Select All Accounts</label>
+            </SelectAll>
+            <Droppable
+              droppableId={this.props.column.id}
+              isDropDisabled={this.props.isDropDisabled}
+              // type={this.props.column.id === "column-3" ? "done" : "active"}
+            >
+              {(provided, snapshot) => (
+                <AccountList
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  isDraggingOver={snapshot.isDraggingOver}
+                >
+                  {this.props.tasks.map((task, index) => (
+                    <Account key={task.id} task={task} index={index} />
+                  ))}
+                  {provided.placeholder}
+                </AccountList>
+              )}
+            </Droppable>
+          </TopHalf>
+          <BottomHalf>
+            <TotalAccountsSelected>0 Accounts Selected</TotalAccountsSelected>
+            <AddToGroupButton>Add to Group</AddToGroupButton>
+          </BottomHalf>
+        </Container>
+        <pre>{"selectAll: " + this.state.selectAll}</pre>
+      </DebugContainer>
     );
   }
 }
