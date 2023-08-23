@@ -20,9 +20,6 @@ const TopHalf = styled.div`
   border: 1px solid var(--neutrals-grey-300, #e0e0e0);
   padding: 24px 24px 0 24px;
 `;
-const Title = styled.h3`
-  padding: 8px;
-`;
 const AccountList = styled.div`
   border-top: 1px solid var(--neutrals-grey-300, #e0e0e0);
   flex-grow: 1;
