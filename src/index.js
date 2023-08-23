@@ -16,8 +16,8 @@ class App extends React.Component {
   state = initialData;
 
   onDragStart = (start) => {
-    document.body.style.color = "orange";
-    document.body.style.transition = "background-color 0.2s ease";
+    // document.body.style.color = "orange";
+    // document.body.style.transition = "background-color 0.2s ease";
 
     const homeIndex = this.state.columnOrder.indexOf(start.source.droppableId);
 
@@ -27,19 +27,19 @@ class App extends React.Component {
   };
 
   onDragUpdate = (update) => {
-    const { destination } = update;
-    const opacity = destination
-      ? destination.index / Object.keys(this.state.tasks).length
-      : 0;
-    document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
+    // const { destination } = update;
+    // const opacity = destination
+    //   ? destination.index / Object.keys(this.state.tasks).length
+    //   : 0;
+    // document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   };
 
   onDragEnd = (result) => {
     this.setState({
       homeIndex: null,
     });
-    document.body.style.color = "inherit";
-    document.body.style.backgroundColor = "inherit";
+    // document.body.style.color = "inherit";
+    // document.body.style.backgroundColor = "inherit";
 
     const { destination, source, draggableId } = result;
 
@@ -117,6 +117,13 @@ class App extends React.Component {
             key={this.state.columns["column-1"].id}
             column={this.state.columns["column-1"]}
             tasks={this.state.columns["column-1"].taskIds.map(
+              (taskId) => this.state.tasks[taskId]
+            )}
+          />
+          <Column
+            key={this.state.columns["column-2"].id}
+            column={this.state.columns["column-2"]}
+            tasks={this.state.columns["column-2"].taskIds.map(
               (taskId) => this.state.tasks[taskId]
             )}
           />
