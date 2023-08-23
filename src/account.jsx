@@ -96,7 +96,7 @@ export default class Account extends React.Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <CheckBox type="checkbox" />
+            <CheckBox type="checkbox" checked={this.props.task.selected} />
             <AccountInformation className="account-information">
               <Heading>{this.props.task.accountName}</Heading>
               <SubText>{this.props.task.accountNumber}</SubText>

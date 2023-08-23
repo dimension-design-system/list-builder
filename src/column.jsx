@@ -19,6 +19,7 @@ const TopHalf = styled.div`
   border-radius: 10px 10px 0 0;
   border: 1px solid var(--neutrals-grey-300, #e0e0e0);
   padding: 24px 24px 0 24px;
+  width: 600px;
 `;
 const AccountList = styled.div`
   border-top: 1px solid var(--neutrals-grey-300, #e0e0e0);
@@ -203,7 +204,14 @@ export default class Column extends React.Component {
             </Droppable>
           </TopHalf>
           <BottomHalf>
-            <TotalAccountsSelected>0 Accounts Selected</TotalAccountsSelected>
+            <TotalAccountsSelected>
+              {
+                this.props.tasks.filter((task) => {
+                  return !!task.selected;
+                }).length
+              }{" "}
+              Accounts Selected
+            </TotalAccountsSelected>
             <AddToGroupButton>Add to Group</AddToGroupButton>
           </BottomHalf>
         </Container>

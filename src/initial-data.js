@@ -28,7 +28,7 @@ const initialData = {
       companyName: "Brown Bear of San Francisco, CA",
       currency: "USD",
       accountType: "SVB-US",
-      selected: false,
+      selected: true,
     },
     "task-4": {
       id: "task-4",

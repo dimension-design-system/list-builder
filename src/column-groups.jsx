@@ -126,7 +126,9 @@ export default class ColumnGroups extends React.Component {
             </Droppable>
           </TopHalf>
           <BottomHalf>
-            <TotalAccountsSelected>0 Accounts in Group</TotalAccountsSelected>
+            <TotalAccountsSelected>
+              {this.props.tasks.length} Accounts in Group
+            </TotalAccountsSelected>
             <GroupActionButtonsContainer>
               <CancelGroupButton>Cancel</CancelGroupButton>
               <SaveGroupButton>Save</SaveGroupButton>
