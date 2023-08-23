@@ -14,6 +14,7 @@ const Container = styled.div`
 `;
 const TopHalf = styled.div`
   display: flex;
+  height: 577px;
   flex-direction: column;
   margin: 24px 24px 0 24px;
   border-radius: 10px 10px 0 0;
@@ -21,26 +22,10 @@ const TopHalf = styled.div`
   padding: 24px 24px 0 24px;
 `;
 const AccountList = styled.div`
-  border-top: 1px solid var(--neutrals-grey-300, #e0e0e0);
   flex-grow: 1;
   height: 500px;
   overflow: scroll;
   overflow-x: hidden;
-`;
-const SelectAll = styled.div`
-  padding: 8px 0;
-`;
-const SelectAllCheckbox = styled.input`
-  margin: 0 4px;
-`;
-const SelectAllText = styled.span`
-  color: var(--neutrals-grey-900, #212121);
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  margin-left: 8px;
 `;
 const BottomHalf = styled.div`
   display: flex;
@@ -62,23 +47,36 @@ const TotalAccountsSelected = styled.h3`
   font-weight: 500;
   line-height: 22px;
 `;
-const AddToGroupButton = styled.button`
+const GroupActionButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const GroupActionButton = styled.button`
   border-radius: 4px;
-  border: 2px solid var(--primary-primary-500, #007db8);
   display: flex;
   height: 30px;
-  padding: 8px;
+  padding: 8px 16px;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  background-color: #fff;
-  color: var(--primary-primary-500, #007db8);
   text-align: center;
   font-family: Roboto;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+  cursor: pointer;
+  justify-self: end;
+`;
+const CancelGroupButton = styled(GroupActionButton)`
+  color: var(--primary-primary-500, #007db8);
+  border: 2px solid var(--primary-primary-500, #007db8);
+  background-color: #fff;
+`;
+const SaveGroupButton = styled(GroupActionButton)`
+  color: var(--neutrals-grey-00, #fff);
+  border: none;
+  background: var(--primary-primary-500, #007db8);
+  margin-left: 16px;
 `;
 
 export default class ColumnGroups extends React.Component {
@@ -100,16 +98,13 @@ export default class ColumnGroups extends React.Component {
       <DebugContainer>
         <Container>
           <TopHalf>
-            <SelectAll>
-              <SelectAllCheckbox
-                type="checkbox"
-                id="select-all"
-                name="select-all"
-                onChange={this.handleSelectAllChange}
-                checked={this.state.selectAll}
-              />
-              <SelectAllText>Select All Accounts</SelectAllText>
-            </SelectAll>
+            <label for="group-name">Group Name</label>
+            <input id="group-name" name="group-name" type="text" />
+            <label for="group-name">Ex. My Operating Accounts</label>
+            <label for="group-name">Group Description</label>
+            <input id="group-name" name="group-name" type="text" />
+            <label for="group-name">Ex. My Operating Accounts</label>
+            <input type="text" placeholder="Search" />
             <Droppable
               droppableId={this.props.column.id}
               isDropDisabled={this.props.isDropDisabled}
@@ -130,8 +125,11 @@ export default class ColumnGroups extends React.Component {
             </Droppable>
           </TopHalf>
           <BottomHalf>
-            <TotalAccountsSelected>0 Accounts Selected</TotalAccountsSelected>
-            <AddToGroupButton>Add to Group</AddToGroupButton>
+            <TotalAccountsSelected>0 Accounts in Group</TotalAccountsSelected>
+            <GroupActionButtonsContainer>
+              <CancelGroupButton>Cancel</CancelGroupButton>
+              <SaveGroupButton>Save</SaveGroupButton>
+            </GroupActionButtonsContainer>
           </BottomHalf>
         </Container>
         <pre>{"selectAll: " + this.state.selectAll}</pre>
