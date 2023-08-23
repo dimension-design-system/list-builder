@@ -6,6 +6,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 
 import initialData from "./initial-data";
 import Column from "./column";
+import ColumnGroups from "./column-groups";
 
 const Container = styled.div`
   display: flex;
@@ -120,7 +121,7 @@ class App extends React.Component {
               (taskId) => this.state.tasks[taskId]
             )}
           />
-          <Column
+          <ColumnGroups
             key={this.state.columns["column-2"].id}
             column={this.state.columns["column-2"]}
             tasks={this.state.columns["column-2"].taskIds.map(

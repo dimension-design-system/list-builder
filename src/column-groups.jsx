@@ -143,7 +143,7 @@ const AddToGroupButton = styled.button`
   line-height: 20px;
 `;
 
-export default class Column extends React.Component {
+export default class ColumnGroups extends React.Component {
   state = {
     selectAll: false,
   };
@@ -162,6 +162,7 @@ export default class Column extends React.Component {
       <DebugContainer>
         <Container>
           <TopHalf>
+            <Title>{this.props.column.title}</Title>
             <ActionBar>
               <ActionBarSearch
                 type="text"
