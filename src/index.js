@@ -119,14 +119,14 @@ class App extends React.Component {
               (taskId) => this.state.tasks[taskId]
             );
 
-            const isDropDisabled = index < this.state.homeIndex;
+            // const isDropDisabled = index < this.state.homeIndex;
 
             return (
               <Column
                 key={column.id}
                 column={column}
                 tasks={tasks}
-                isDropDisabled={isDropDisabled}
+                // isDropDisabled={isDropDisabled}
               />
             );
           })}
