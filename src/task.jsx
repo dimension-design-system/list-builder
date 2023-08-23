@@ -8,7 +8,6 @@ const Container = styled.div`
   background: var(--neutrals-grey-00, #fff);
   display: flex;
   justify-content: space-between;
-  width: 100%;
   &:hover {
     background: var(--neutrals-grey-100, #f5f5f5);
     cursor: pointer;
@@ -71,19 +70,15 @@ const RowSection = styled.div`
 `;
 const AccountInformation = styled(RowSection)`
   flex: 1;
-  // width: 181px;
 `;
 const CompanyInformation = styled(RowSection)`
   flex: 1;
-  // min-width: 120px;
 `;
 const CurrencyInformation = styled(RowSection)`
   flex: 0;
-  // width: 32px;
 `;
 const SVBInformation = styled(RowSection)`
   flex: 0;
-  // width: 67px;
 `;
 
 export default class Task extends React.Component {

@@ -6,7 +6,6 @@ import Task from "./task";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 588px;
   margin: 12px;
   border: 1px solid var(--neutrals-grey-300, #e0e0e0);
   border-radius: 10px;
@@ -15,12 +14,12 @@ const Container = styled.div`
 const Title = styled.h3`
   padding: 8px;
 `;
-const TaskList = styled.div`
-  padding: 8px;
-  transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? "skyblue" : "white")};
+const AccountList = styled.div`
+  border-top: 1px solid var(--neutrals-grey-300, #e0e0e0);
   flex-grow: 1;
-  min-height: 500px;
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
 `;
 const ActionBar = styled.div`
   display: flex;
@@ -82,7 +81,7 @@ export default class Column extends React.Component {
           // type={this.props.column.id === "column-3" ? "done" : "active"}
         >
           {(provided, snapshot) => (
-            <TaskList
+            <AccountList
               ref={provided.innerRef}
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
@@ -91,7 +90,7 @@ export default class Column extends React.Component {
                 <Task key={task.id} task={task} index={index} />
               ))}
               {provided.placeholder}
-            </TaskList>
+            </AccountList>
           )}
         </Droppable>
         <AddToGroupBar>
