@@ -3,11 +3,13 @@ import ReactDOM from "react-dom";
 import "@atlaskit/css-reset";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
+
 import initialData from "./initial-data";
 import Column from "./column";
 
 const Container = styled.div`
   display: flex;
+  font-family: "Roboto", sans-serif;
 `;
 
 class App extends React.Component {
