@@ -113,23 +113,13 @@ class App extends React.Component {
         onDragEnd={this.onDragEnd}
       >
         <Container>
-          {this.state.columnOrder.map((columnId, index) => {
-            const column = this.state.columns[columnId];
-            const tasks = column.taskIds.map(
+          <Column
+            key={this.state.columns["column-1"].id}
+            column={this.state.columns["column-1"]}
+            tasks={this.state.columns["column-1"].taskIds.map(
               (taskId) => this.state.tasks[taskId]
-            );
-
-            // const isDropDisabled = index < this.state.homeIndex;
-
-            return (
-              <Column
-                key={column.id}
-                column={column}
-                tasks={tasks}
-                // isDropDisabled={isDropDisabled}
-              />
-            );
-          })}
+            )}
+          />
         </Container>
       </DragDropContext>
     );
