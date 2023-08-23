@@ -41,8 +41,19 @@ const ActionBar = styled.div`
   background: var(--neutrals-grey-100, #f5f5f5);
 `;
 const SelectAll = styled.div`
-  width: 100%;
-  padding: 4px 8px 4px 4px;
+  padding: 8px 0;
+`;
+const SelectAllCheckbox = styled.input`
+  margin: 0 4px;
+`;
+const SelectAllText = styled.span`
+  color: var(--neutrals-grey-900, #212121);
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  margin-left: 8px;
 `;
 const BottomHalf = styled.div`
   display: flex;
@@ -109,14 +120,14 @@ export default class Column extends React.Component {
               <button>sort</button>
             </ActionBar>
             <SelectAll>
-              <input
+              <SelectAllCheckbox
                 type="checkbox"
                 id="select-all"
                 name="select-all"
                 onChange={this.handleSelectAllChange}
                 checked={this.state.selectAll}
               />
-              <label for="select-all">Select All Accounts</label>
+              <SelectAllText>Select All Accounts</SelectAllText>
             </SelectAll>
             <Droppable
               droppableId={this.props.column.id}
