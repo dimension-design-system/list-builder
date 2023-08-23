@@ -135,7 +135,7 @@ export default class ColumnGroups extends React.Component {
             </GroupActionButtonsContainer>
           </BottomHalf>
         </Container>
-        <pre>{"selectAll: " + this.state.selectAll}</pre>
+        <pre></pre>
       </DebugContainer>
     );
   }
