@@ -20,6 +20,7 @@ const TopHalf = styled.div`
   border-radius: 10px 10px 0 0;
   border: 1px solid var(--neutrals-grey-300, #e0e0e0);
   padding: 24px 24px 0 24px;
+  width: 600px;
 `;
 const AccountList = styled.div`
   flex-grow: 1;
