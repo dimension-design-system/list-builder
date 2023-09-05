@@ -29,6 +29,20 @@ class App extends React.Component {
     });
   };
 
+  handleSelectAllChange = (selectAllBoolean) => {
+    this.setState((prevState) => {
+      const updatedCheckboxItems = { ...prevState.tasks };
+      for (const task in updatedCheckboxItems) {
+        if (selectAllBoolean) {
+          updatedCheckboxItems[task].selected = true;
+        } else {
+          updatedCheckboxItems[task].selected = false;
+        }
+      }
+      return { tasks: updatedCheckboxItems };
+    });
+  };
+
   onDragStart = (start) => {
     // document.body.style.color = "orange";
     // document.body.style.transition = "background-color 0.2s ease";
@@ -93,6 +107,47 @@ class App extends React.Component {
       return;
     }
 
+    this.moveFromOneListToAnother(
+      start,
+      finish,
+      destination,
+      source,
+      draggableId
+    );
+
+    // // Moving from one list to another
+    // const startTaskIds = Array.from(start.taskIds);
+    // startTaskIds.splice(source.index, 1);
+    // const newStart = {
+    //   ...start,
+    //   taskIds: startTaskIds,
+    // };
+
+    // const finishTaskIds = Array.from(finish.taskIds);
+    // finishTaskIds.splice(destination.index, 0, draggableId);
+    // const newFinish = {
+    //   ...finish,
+    //   taskIds: finishTaskIds,
+    // };
+
+    // const newState = {
+    //   ...this.state,
+    //   columns: {
+    //     ...this.state.columns,
+    //     [newStart.id]: newStart,
+    //     [newFinish.id]: newFinish,
+    //   },
+    // };
+    // this.setState(newState);
+  };
+
+  moveFromOneListToAnother = (
+    start,
+    finish,
+    destination,
+    source,
+    draggableId
+  ) => {
     // Moving from one list to another
     const startTaskIds = Array.from(start.taskIds);
     startTaskIds.splice(source.index, 1);
@@ -134,6 +189,7 @@ class App extends React.Component {
               (taskId) => this.state.tasks[taskId]
             )}
             onCheckboxChange={this.handleCheckboxChange}
+            onSelectAllChange={this.handleSelectAllChange}
           />
           <ColumnGroups
             id={this.state.columns["column-2"].id}

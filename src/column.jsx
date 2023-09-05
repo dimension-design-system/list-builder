@@ -146,17 +146,24 @@ export default class Column extends React.Component {
     this.props.onCheckboxChange(id, selected);
   };
 
-  state = {
-    selectAll: false,
-  };
+  get selectAllValue() {
+    let allAreSelected = true;
+    const currentTasks = { ...this.props.tasks };
+    for (const task in currentTasks) {
+      if (currentTasks[task].selected !== true) {
+        allAreSelected = false;
+        break;
+      }
+    }
+    return allAreSelected;
+  }
 
   handleSelectAllChange = () => {
-    this.setState(
-      (prevState) => ({
-        selectAll: !prevState.selectAll,
-      }),
-      () => {}
-    );
+    if (this.selectAllValue) {
+      this.props.onSelectAllChange(false);
+    } else {
+      this.props.onSelectAllChange(true);
+    }
   };
 
   render() {
@@ -184,7 +191,7 @@ export default class Column extends React.Component {
                 id="select-all"
                 name="select-all"
                 onChange={this.handleSelectAllChange}
-                checked={this.state.selectAll}
+                checked={this.selectAllValue}
               />
               <SelectAllText>Select All Accounts</SelectAllText>
             </SelectAll>
@@ -226,8 +233,6 @@ export default class Column extends React.Component {
             <AddToGroupButton>Add to Group</AddToGroupButton>
           </BottomHalf>
         </Container>
-        <pre>{"selectAll: " + this.state.selectAll}</pre>
-        {/* <pre>{"checkboxValue: " + JSON.stringify(this.props.tasks)}</pre> */}
       </DebugContainer>
     );
   }
