@@ -179,6 +179,7 @@ class App extends React.Component {
             tasks={this.state.columns["column-2"].taskIds.map(
               (taskId) => this.state.tasks[taskId]
             )}
+            onCheckboxChange={this.handleCheckboxChange}
           />
         </Container>
       </DragDropContext>

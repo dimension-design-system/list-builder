@@ -85,6 +85,10 @@ export default class ColumnGroups extends React.Component {
     selectAll: false,
   };
 
+  handleCheckboxChange = (id, selected) => {
+    this.props.onCheckboxChange(id, selected);
+  };
+
   handleSelectAllChange = () => {
     this.setState(
       (prevState) => ({
@@ -118,7 +122,14 @@ export default class ColumnGroups extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {this.props.tasks.map((task, index) => (
-                    <Account id={task.id} task={task} index={index} />
+                    <Account
+                      key={task.id}
+                      id={task.id}
+                      task={task}
+                      index={index}
+                      onCheckboxChange={this.handleCheckboxChange}
+                      selected={task.selected}
+                    />
                   ))}
                   {provided.placeholder}
                 </AccountList>
