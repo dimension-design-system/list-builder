@@ -16,6 +16,19 @@ const Container = styled.div`
 class App extends React.Component {
   state = initialData;
 
+  handleCheckboxChange = (id, selected) => {
+    this.setState((prevState) => {
+      const updatedCheckboxItems = { ...prevState.tasks };
+      for (const taskId in updatedCheckboxItems) {
+        if (taskId === id) {
+          updatedCheckboxItems[id].selected = selected;
+        }
+      }
+
+      return { tasks: updatedCheckboxItems };
+    });
+  };
+
   onDragStart = (start) => {
     // document.body.style.color = "orange";
     // document.body.style.transition = "background-color 0.2s ease";
@@ -115,14 +128,15 @@ class App extends React.Component {
       >
         <Container>
           <Column
-            key={this.state.columns["column-1"].id}
+            id={this.state.columns["column-1"].id}
             column={this.state.columns["column-1"]}
             tasks={this.state.columns["column-1"].taskIds.map(
               (taskId) => this.state.tasks[taskId]
             )}
+            onCheckboxChange={this.handleCheckboxChange}
           />
           <ColumnGroups
-            key={this.state.columns["column-2"].id}
+            id={this.state.columns["column-2"].id}
             column={this.state.columns["column-2"]}
             tasks={this.state.columns["column-2"].taskIds.map(
               (taskId) => this.state.tasks[taskId]

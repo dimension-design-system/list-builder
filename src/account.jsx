@@ -82,6 +82,11 @@ const SVBInformation = styled(RowSection)`
 `;
 
 export default class Account extends React.Component {
+  handleCheckboxChange = () => {
+    const { id, onCheckboxChange, selected } = this.props;
+    onCheckboxChange(id, !selected);
+  };
+
   render() {
     // const isDragDisabled = this.props.task.id === "task-1";
     return (
@@ -96,7 +101,11 @@ export default class Account extends React.Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <CheckBox type="checkbox" checked={this.props.task.selected} />
+            <CheckBox
+              type="checkbox"
+              checked={this.props.selected}
+              onChange={this.handleCheckboxChange}
+            />
             <AccountInformation className="account-information">
               <Heading>{this.props.task.accountName}</Heading>
               <SubText>{this.props.task.accountNumber}</SubText>

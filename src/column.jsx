@@ -142,6 +142,10 @@ const AddToGroupButton = styled.button`
 `;
 
 export default class Column extends React.Component {
+  handleCheckboxChange = (id, selected) => {
+    this.props.onCheckboxChange(id, selected);
+  };
+
   state = {
     selectAll: false,
   };
@@ -196,7 +200,14 @@ export default class Column extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {this.props.tasks.map((task, index) => (
-                    <Account key={task.id} task={task} index={index} />
+                    <Account
+                      key={task.id}
+                      id={task.id}
+                      task={task}
+                      index={index}
+                      onCheckboxChange={this.handleCheckboxChange}
+                      selected={task.selected}
+                    />
                   ))}
                   {provided.placeholder}
                 </AccountList>
@@ -216,6 +227,7 @@ export default class Column extends React.Component {
           </BottomHalf>
         </Container>
         <pre>{"selectAll: " + this.state.selectAll}</pre>
+        {/* <pre>{"checkboxValue: " + JSON.stringify(this.props.tasks)}</pre> */}
       </DebugContainer>
     );
   }

@@ -118,7 +118,7 @@ export default class ColumnGroups extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {this.props.tasks.map((task, index) => (
-                    <Account key={task.id} task={task} index={index} />
+                    <Account id={task.id} task={task} index={index} />
                   ))}
                   {provided.placeholder}
                 </AccountList>
