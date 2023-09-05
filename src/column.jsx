@@ -142,6 +142,10 @@ const AddToGroupButton = styled.button`
 `;
 
 export default class Column extends React.Component {
+  handleAddToGroup = () => {
+    this.props.onAddToGroupClick();
+  };
+
   handleCheckboxChange = (id, selected) => {
     this.props.onCheckboxChange(id, selected);
   };
@@ -230,7 +234,9 @@ export default class Column extends React.Component {
               }{" "}
               Accounts Selected
             </TotalAccountsSelected>
-            <AddToGroupButton>Add to Group</AddToGroupButton>
+            <AddToGroupButton onClick={this.handleAddToGroup}>
+              Add to Group
+            </AddToGroupButton>
           </BottomHalf>
         </Container>
       </DebugContainer>

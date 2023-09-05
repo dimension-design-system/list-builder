@@ -43,6 +43,28 @@ class App extends React.Component {
     });
   };
 
+  handleAddToGroupClick = () => {
+    const previousStateTasks = this.state.tasks;
+    let keysToMove = [];
+    for (const taskId in previousStateTasks) {
+      if (previousStateTasks[taskId].selected) {
+        keysToMove.push(taskId);
+      }
+    }
+    const newState = this.state;
+    keysToMove.forEach((item) => {
+      const indexToRemove =
+        this.state.columns["column-1"].taskIds.indexOf(item);
+      if (indexToRemove !== -1) {
+        newState.columns["column-1"].taskIds.splice(indexToRemove, 1);
+        newState.columns["column-2"].taskIds.push(item);
+      }
+    });
+    this.setState(() => {
+      return newState;
+    });
+  };
+
   onDragStart = (start) => {
     // document.body.style.color = "orange";
     // document.body.style.transition = "background-color 0.2s ease";
@@ -107,47 +129,6 @@ class App extends React.Component {
       return;
     }
 
-    this.moveFromOneListToAnother(
-      start,
-      finish,
-      destination,
-      source,
-      draggableId
-    );
-
-    // // Moving from one list to another
-    // const startTaskIds = Array.from(start.taskIds);
-    // startTaskIds.splice(source.index, 1);
-    // const newStart = {
-    //   ...start,
-    //   taskIds: startTaskIds,
-    // };
-
-    // const finishTaskIds = Array.from(finish.taskIds);
-    // finishTaskIds.splice(destination.index, 0, draggableId);
-    // const newFinish = {
-    //   ...finish,
-    //   taskIds: finishTaskIds,
-    // };
-
-    // const newState = {
-    //   ...this.state,
-    //   columns: {
-    //     ...this.state.columns,
-    //     [newStart.id]: newStart,
-    //     [newFinish.id]: newFinish,
-    //   },
-    // };
-    // this.setState(newState);
-  };
-
-  moveFromOneListToAnother = (
-    start,
-    finish,
-    destination,
-    source,
-    draggableId
-  ) => {
     // Moving from one list to another
     const startTaskIds = Array.from(start.taskIds);
     startTaskIds.splice(source.index, 1);
@@ -190,6 +171,7 @@ class App extends React.Component {
             )}
             onCheckboxChange={this.handleCheckboxChange}
             onSelectAllChange={this.handleSelectAllChange}
+            onAddToGroupClick={this.handleAddToGroupClick}
           />
           <ColumnGroups
             id={this.state.columns["column-2"].id}
