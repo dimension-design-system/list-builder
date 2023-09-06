@@ -123,6 +123,7 @@ const TotalAccountsSelected = styled.h3`
   line-height: 22px;
 `;
 const AddToGroupButton = styled.button`
+  cursor: pointer;
   border-radius: 4px;
   border: 2px solid var(--primary-primary-500, #007db8);
   display: flex;
