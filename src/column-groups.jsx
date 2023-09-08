@@ -79,6 +79,59 @@ const SaveGroupButton = styled(GroupActionButton)`
   background: var(--primary-primary-500, #007db8);
   margin-left: 16px;
 `;
+const GroupInput = styled.input`
+  border-radius: 4px;
+  border: 1px solid var(--neutrals-grey-500, #9e9e9e);
+  background: var(--neutrals-grey-00, #fff);
+  display: flex;
+  height: 48px;
+  padding: 13px 16px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  color: var(--neutrals-grey-600, #757575);
+
+  /* Desktop + Tablet (MD)/Body/Body 1 */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+  flex: 1 0 0;
+  margin-bottom: 4px;
+`;
+const GroupInputLabel = styled.label`
+  flex: 1 0 0;
+  color: var(--neutrals-grey-600, #757575);
+
+  /* Desktop + Tablet (MD)/Body/Body 2 */
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  margin-bottom: 24px;
+  margin-left: 16px;
+`;
+const GroupSearchInput = styled.input`
+  background: transparent
+    url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.71 14H15.5L20.49 19L19 20.49L14 15.5V14.71L13.73 14.43C12.59 15.41 11.11 16 9.5 16C5.91 16 3 13.09 3 9.5C3 5.91 5.91 3 9.5 3C13.09 3 16 5.91 16 9.5C16 11.11 15.41 12.59 14.43 13.73L14.71 14ZM5 9.5C5 11.99 7.01 14 9.5 14C11.99 14 14 11.99 14 9.5C14 7.01 11.99 5 9.5 5C7.01 5 5 7.01 5 9.5Z' fill='%23757575'/%3E%3C/svg%3E%0A")
+    no-repeat 8px center;
+  display: flex;
+  padding: 12px 36px;
+  align-items: flex-start;
+  gap: 4px;
+  border-radius: 4px;
+  border: 1px solid var(--neutrals-grey-500, #9e9e9e);
+  color: var(--neutrals-grey-500, #9e9e9e);
+
+  /* Desktop + Tablet (MD)/Body/Body 1 */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 137.5% */
+`;
 
 export default class ColumnGroups extends React.Component {
   state = {
@@ -103,13 +156,13 @@ export default class ColumnGroups extends React.Component {
       <DebugContainer>
         <Container>
           <TopHalf>
-            <label for="group-name">Group Name</label>
-            <input id="group-name" name="group-name" type="text" />
-            <label for="group-name">Ex. My Operating Accounts</label>
-            <label for="group-name">Group Description</label>
-            <input id="group-name" name="group-name" type="text" />
-            <label for="group-name">Ex. My Operating Accounts</label>
-            <input type="text" placeholder="Search" />
+            <GroupInput placeholder="Group Name"></GroupInput>
+            <GroupInputLabel for="group-name">Group Name</GroupInputLabel>
+            <GroupInput placeholder="Group Description"></GroupInput>
+            <GroupInputLabel for="group-name">
+              Ex. My Operating Accounts
+            </GroupInputLabel>
+            <GroupSearchInput placeholder="Search"></GroupSearchInput>
             <Droppable
               droppableId={this.props.column.id}
               isDropDisabled={this.props.isDropDisabled}
