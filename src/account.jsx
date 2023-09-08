@@ -15,6 +15,22 @@ const Container = styled.div`
 `;
 const CheckBox = styled.input`
   margin: 0 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid var(--neutrals-grey-300, #e0e0e0);
+  border-radius: 4px;
+  width: 16px;
+  height: 16px;
+  transition: all 150ms;
+  &:checked {
+    background-color: var(--primary-blue-500, #2196f3);
+    border: 1px solid var(--primary-blue-500, #2196f3);
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.5 6.5L1 4L0 5L3.5 8.5L10 2L9 1L3.5 6.5Z' fill='white'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 8px;
+  }
 `;
 const Heading = styled.h3`
   color: var(--neutrals-grey-900, #212121);
