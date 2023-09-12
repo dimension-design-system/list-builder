@@ -116,6 +116,7 @@ export default class Account extends React.Component {
             {...provided.draggableProps}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
+            {...provided.dragHandleProps}
           >
             <CheckBox
               type="checkbox"
@@ -136,7 +137,7 @@ export default class Account extends React.Component {
               <RegularText>{this.props.task.accountType}</RegularText>
               <SubText>{this.props.task.accountNumber}</SubText>
             </SVBInformation>
-            <Handle {...provided.dragHandleProps} />
+            <Handle />
           </Container>
         )}
       </Draggable>
