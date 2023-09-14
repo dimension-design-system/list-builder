@@ -39,6 +39,7 @@ const ActionBar = styled.div`
   padding: 4px 8px 4px 4px;
   border-radius: 4px;
   background: var(--neutrals-grey-100, #f5f5f5);
+  margin-bottom: 36px;
 `;
 const ActionBarSearch = styled.input`
   display: flex;
