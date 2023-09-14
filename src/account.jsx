@@ -110,6 +110,11 @@ export default class Account extends React.Component {
     onCheckboxChange(id, !selected);
   };
 
+  handleDeleteButtonClick = () => {
+    const { id, onDeleteButtonClick } = this.props;
+    onDeleteButtonClick(id);
+  }
+
   render() {
     // const isDragDisabled = this.props.task.id === "task-1";
     return (
@@ -130,7 +135,7 @@ export default class Account extends React.Component {
               checked={this.props.selected}
               onChange={this.handleCheckboxChange}
             />}
-            {this.props.grouped && <DeleteButton />}
+            {this.props.grouped && <DeleteButton onClick={this.handleDeleteButtonClick} />}
             <AccountInformation className="account-information">
               <Heading>{this.props.task.accountName}</Heading>
               <SubText>{this.props.task.accountNumber}</SubText>

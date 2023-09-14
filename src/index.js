@@ -65,6 +65,19 @@ class App extends React.Component {
     });
   };
 
+  handleDeleteButtonClick = (id) => {
+    const indexToRemove =
+      this.state.columns["column-2"].taskIds.indexOf(id);
+      const newState = this.state;
+      if (indexToRemove !== -1) {
+        newState.columns["column-2"].taskIds.splice(indexToRemove, 1);
+        newState.columns["column-1"].taskIds.push(id);
+      }
+    this.setState(() => {
+      return newState;
+    });
+  }
+
   onDragStart = (start) => {
     // document.body.style.color = "orange";
     // document.body.style.transition = "background-color 0.2s ease";
@@ -180,6 +193,7 @@ class App extends React.Component {
               (taskId) => this.state.tasks[taskId]
             )}
             onCheckboxChange={this.handleCheckboxChange}
+            onDeleteButtonClick={this.handleDeleteButtonClick}
           />
         </Container>
       </DragDropContext>

@@ -144,6 +144,10 @@ export default class ColumnGroups extends React.Component {
   handleCheckboxChange = (id, selected) => {
     this.props.onCheckboxChange(id, selected);
   };
+  
+  handleDeleteButtonClick = (id) => {
+    this.props.onDeleteButtonClick(id);
+  };
 
   handleSelectAllChange = () => {
     this.setState(
@@ -184,6 +188,7 @@ export default class ColumnGroups extends React.Component {
                       task={task}
                       index={index}
                       onCheckboxChange={this.handleCheckboxChange}
+                      onDeleteButtonClick={this.handleDeleteButtonClick}
                       selected={task.selected}
                       grouped={true}
                     />
