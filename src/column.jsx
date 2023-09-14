@@ -91,22 +91,22 @@ const SelectAll = styled.div`
   padding: 8px 0;
 `;
 const SelectAllCheckbox = styled.input`
-margin: 0 4px;
--webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-border: 2px solid #9E9E9E;
-border-radius: 2px;
-width: 18px;
-height: 18px;
-transition: all 150ms;
-&:checked {
-  border: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.00003 11.1698L1.83003 6.99984L0.410034 8.40984L6.00003 13.9998L18 1.99984L16.59 0.589844L6.00003 11.1698Z' fill='%239E9E9E'/%3E%3C/svg%3E%0A");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 18px 18px;
-}
+  margin: 0 4px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 2px solid #9e9e9e;
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  transition: all 150ms;
+  &:checked {
+    border: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.00003 11.1698L1.83003 6.99984L0.410034 8.40984L6.00003 13.9998L18 1.99984L16.59 0.589844L6.00003 11.1698Z' fill='%239E9E9E'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 18px;
+  }
 `;
 const SelectAllText = styled.span`
   color: var(--neutrals-grey-900, #212121);
