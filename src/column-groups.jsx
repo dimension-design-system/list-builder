@@ -198,10 +198,13 @@ export default class ColumnGroups extends React.Component {
               Ex. My Operating Accounts
             </GroupInputLabel>
             <GroupSearchInput placeholder="Search"></GroupSearchInput>
-            <RemoveAllAccounts>
-              <DeleteButton />
-              <span>Remove All Accounts</span>
-            </RemoveAllAccounts>
+            {this.props.tasks.length > 0 && (
+              <RemoveAllAccounts>
+                <DeleteButton />
+                <span>Remove All Accounts</span>
+              </RemoveAllAccounts>
+            )}
+
             <Droppable
               droppableId={this.props.column.id}
               isDropDisabled={this.props.isDropDisabled}
