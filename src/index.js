@@ -59,6 +59,7 @@ class App extends React.Component {
         newState.columns["column-1"].taskIds.splice(indexToRemove, 1);
         newState.columns["column-2"].taskIds.push(item);
       }
+      newState.tasks[item].selected = false;
     });
     this.setState(() => {
       return newState;
