@@ -164,6 +164,13 @@ class App extends React.Component {
         [newStart.id]: newStart,
         [newFinish.id]: newFinish,
       },
+      tasks: {
+        ...this.state.tasks,
+        [draggableId]: {
+          ...this.state.tasks[draggableId],
+          selected: false,
+        } 
+      }
     };
     this.setState(newState);
   };
