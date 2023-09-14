@@ -186,6 +186,10 @@ export default class ColumnGroups extends React.Component {
     );
   };
 
+  handleRemoveAllAccountsClick = () => {
+    this.props.onRemoveAllAccountsClick();
+  };
+
   render() {
     return (
       <DebugContainer>
@@ -199,7 +203,7 @@ export default class ColumnGroups extends React.Component {
             </GroupInputLabel>
             <GroupSearchInput placeholder="Search"></GroupSearchInput>
             {this.props.tasks.length > 0 && (
-              <RemoveAllAccounts>
+              <RemoveAllAccounts onClick={this.handleRemoveAllAccountsClick}>
                 <DeleteButton />
                 <span>Remove All Accounts</span>
               </RemoveAllAccounts>
