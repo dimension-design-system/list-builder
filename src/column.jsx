@@ -103,10 +103,13 @@ const SelectAllCheckbox = styled.input`
   transition: all 150ms;
   &:checked {
     border: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='18' height='14' viewBox='0 0 18 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.00003 11.1698L1.83003 6.99984L0.410034 8.40984L6.00003 13.9998L18 1.99984L16.59 0.589844L6.00003 11.1698Z' fill='%239E9E9E'/%3E%3C/svg%3E%0A");
+    ${(props) =>
+      props.selectAllValue === true
+        ? `background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.11 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z' fill='%23007DB8'/%3E%3C/svg%3E");`
+        : `background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.11 21 21 20.1 21 19V5C21 3.9 20.11 3 19 3Z' fill='%23007DB8'/%3E%3Crect x='5' y='11' width='14' height='2' fill='white'/%3E%3C/svg%3E")`};
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 18px 18px;
+    background-size: 22px 22px;
   }
 `;
 const SelectAllText = styled.span`
@@ -168,15 +171,20 @@ export default class Column extends React.Component {
   };
 
   get selectAllValue() {
-    let allAreSelected = true;
+    let selectedCount = 0;
     const currentTasks = { ...this.props.tasks };
     for (const task in currentTasks) {
-      if (currentTasks[task].selected !== true) {
-        allAreSelected = false;
-        break;
+      if (currentTasks[task].selected === true) {
+        selectedCount++;
       }
     }
-    return allAreSelected;
+    if (selectedCount === 0) {
+      return false;
+    } else if (selectedCount === this.props.tasks.length) {
+      return true;
+    } else {
+      return null;
+    }
   }
 
   handleSelectAllChange = () => {
@@ -208,11 +216,16 @@ export default class Column extends React.Component {
             </ActionBar>
             <SelectAll>
               <SelectAllCheckbox
+                selectAllValue={this.selectAllValue}
                 type="checkbox"
                 id="select-all"
                 name="select-all"
                 onChange={this.handleSelectAllChange}
-                checked={this.selectAllValue}
+                checked={
+                  this.selectAllValue === true || this.selectAllValue === null
+                    ? true
+                    : false
+                }
               />
               <SelectAllText>Select All Accounts</SelectAllText>
             </SelectAll>
