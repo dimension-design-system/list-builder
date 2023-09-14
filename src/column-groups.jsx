@@ -185,6 +185,7 @@ export default class ColumnGroups extends React.Component {
                       index={index}
                       onCheckboxChange={this.handleCheckboxChange}
                       selected={task.selected}
+                      grouped={true}
                     />
                   ))}
                   {provided.placeholder}

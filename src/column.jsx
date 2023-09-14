@@ -219,6 +219,7 @@ export default class Column extends React.Component {
                       index={index}
                       onCheckboxChange={this.handleCheckboxChange}
                       selected={task.selected}
+                      grouped={false}
                     />
                   ))}
                   {provided.placeholder}

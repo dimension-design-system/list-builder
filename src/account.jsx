@@ -96,6 +96,13 @@ const CurrencyInformation = styled(RowSection)`
 const SVBInformation = styled(RowSection)`
   flex: 0;
 `;
+const DeleteButton = styled.button`
+width: 20px;
+height: 20px;
+background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.99996 0.666504C4.39163 0.666504 0.666626 4.3915 0.666626 8.99984C0.666626 13.6082 4.39163 17.3332 8.99996 17.3332C13.6083 17.3332 17.3333 13.6082 17.3333 8.99984C17.3333 4.3915 13.6083 0.666504 8.99996 0.666504ZM11.1583 5.66649L9.00001 7.82483L6.84168 5.66649L5.66668 6.84149L7.82501 8.99983L5.66668 11.1582L6.84168 12.3332L9.00001 10.1748L11.1583 12.3332L12.3333 11.1582L10.175 8.99983L12.3333 6.84149L11.1583 5.66649ZM2.33352 8.99981C2.33352 12.6748 5.32519 15.6665 9.00019 15.6665C12.6752 15.6665 15.6669 12.6748 15.6669 8.99981C15.6669 5.32481 12.6752 2.33315 9.00019 2.33315C5.32519 2.33315 2.33352 5.32481 2.33352 8.99981Z' fill='%23757575'/%3E%3C/svg%3E%0A");
+background-position: center;
+// border: none;
+`
 
 export default class Account extends React.Component {
   handleCheckboxChange = () => {
@@ -118,11 +125,12 @@ export default class Account extends React.Component {
             isDragging={snapshot.isDragging}
             {...provided.dragHandleProps}
           >
-            <CheckBox
+            {!this.props.grouped && <CheckBox
               type="checkbox"
               checked={this.props.selected}
               onChange={this.handleCheckboxChange}
-            />
+            />}
+            {this.props.grouped && <DeleteButton />}
             <AccountInformation className="account-information">
               <Heading>{this.props.task.accountName}</Heading>
               <SubText>{this.props.task.accountNumber}</SubText>
