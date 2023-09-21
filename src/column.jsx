@@ -162,6 +162,20 @@ const AddToGroupButton = styled.button`
 `;
 
 export default class Column extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filterValue: "",
+    };
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      filterValue: e.target.value,
+    });
+  };
+
   handleAddToGroup = () => {
     this.props.onAddToGroupClick();
   };
@@ -196,6 +210,15 @@ export default class Column extends React.Component {
   };
 
   render() {
+    const { filterValue } = this.state;
+
+    const filteredTasks = Object.values(this.props.tasks).filter((task) =>
+      Object.values(task).some(
+        (val) =>
+          typeof val === "string" &&
+          val.toLowerCase().includes(filterValue.toLowerCase())
+      )
+    );
     return (
       <DebugContainer>
         <Container>
@@ -204,6 +227,8 @@ export default class Column extends React.Component {
               <ActionBarSearch
                 type="text"
                 placeholder="Search"
+                value={filterValue}
+                onChange={this.handleInputChange}
               ></ActionBarSearch>
               <ActionBarFilter>
                 <img src="data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_1537)'%3e%3cpath d='M2.83333 3.73984C4.18 5.4665 6.66666 8.6665 6.66666 8.6665V12.6665C6.66666 13.0332 6.96666 13.3332 7.33333 13.3332H8.66666C9.03333 13.3332 9.33333 13.0332 9.33333 12.6665V8.6665C9.33333 8.6665 11.8133 5.4665 13.16 3.73984C13.5 3.29984 13.1867 2.6665 12.6333 2.6665H3.36C2.80666 2.6665 2.49333 3.29984 2.83333 3.73984Z' fill='%23007DB8'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_1537'%3e%3crect width='16' height='16' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" />
@@ -240,7 +265,8 @@ export default class Column extends React.Component {
                   {...provided.droppableProps}
                   isDraggingOver={snapshot.isDraggingOver}
                 >
-                  {this.props.tasks.map((task, index) => (
+                  {filteredTasks.map((task, index) => (
+                    // {this.props.tasks.map((task, index) => (
                     <Account
                       key={task.id}
                       id={task.id}
