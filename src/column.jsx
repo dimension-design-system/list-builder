@@ -167,6 +167,8 @@ export default class Column extends React.Component {
 
     this.state = {
       filterValue: "",
+      ascending: true,
+      tasks: props.tasks,
     };
   }
 
@@ -186,7 +188,7 @@ export default class Column extends React.Component {
 
   get selectAllValue() {
     let selectedCount = 0;
-    const currentTasks = { ...this.props.tasks };
+    const currentTasks = { ...this.state.tasks };
     for (const task in currentTasks) {
       if (currentTasks[task].selected === true) {
         selectedCount++;
@@ -194,7 +196,7 @@ export default class Column extends React.Component {
     }
     if (selectedCount === 0) {
       return false;
-    } else if (selectedCount === this.props.tasks.length) {
+    } else if (selectedCount === this.state.tasks.length) {
       return true;
     } else {
       return null;
@@ -208,11 +210,26 @@ export default class Column extends React.Component {
       this.props.onSelectAllChange(true);
     }
   };
+  handleSortTasks(property) {
+    const { ascending, tasks } = this.state;
+
+    tasks.sort((a, b) => {
+      if (a[property] < b[property]) return -1;
+      if (a[property] > b[property]) return 1;
+      return 0;
+    });
+
+    if (!ascending) {
+      tasks.reverse();
+    }
+
+    this.setState({ tasks: [...tasks], ascending: !ascending });
+  }
 
   render() {
     const { filterValue } = this.state;
 
-    const filteredTasks = Object.values(this.props.tasks).filter((task) =>
+    const filteredTasks = Object.values(this.state.tasks).filter((task) =>
       Object.values(task).some(
         (val) =>
           typeof val === "string" &&
@@ -234,7 +251,9 @@ export default class Column extends React.Component {
                 <img src="data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_1537)'%3e%3cpath d='M2.83333 3.73984C4.18 5.4665 6.66666 8.6665 6.66666 8.6665V12.6665C6.66666 13.0332 6.96666 13.3332 7.33333 13.3332H8.66666C9.03333 13.3332 9.33333 13.0332 9.33333 12.6665V8.6665C9.33333 8.6665 11.8133 5.4665 13.16 3.73984C13.5 3.29984 13.1867 2.6665 12.6333 2.6665H3.36C2.80666 2.6665 2.49333 3.29984 2.83333 3.73984Z' fill='%23007DB8'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_1537'%3e%3crect width='16' height='16' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" />
                 Filter
               </ActionBarFilter>
-              <ActionBarSort>
+              <ActionBarSort
+                onClick={() => this.handleSortTasks("accountName")}
+              >
                 Sort
                 <img src="data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_1697)'%3e%3cpath d='M4.99996 6.3335L8.33329 9.66683L11.6666 6.3335H4.99996Z' fill='%23007DB8'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_1697'%3e%3crect width='16' height='16' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" />
               </ActionBarSort>
@@ -266,7 +285,7 @@ export default class Column extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {filteredTasks.map((task, index) => (
-                    // {this.props.tasks.map((task, index) => (
+                    // {this.state.tasks.map((task, index) => (
                     <Account
                       key={task.id}
                       id={task.id}
@@ -285,7 +304,7 @@ export default class Column extends React.Component {
           <BottomHalf>
             <TotalAccountsSelected>
               {
-                this.props.tasks.filter((task) => {
+                this.state.tasks.filter((task) => {
                   return !!task.selected;
                 }).length
               }{" "}
