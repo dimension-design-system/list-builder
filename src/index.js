@@ -67,17 +67,16 @@ class App extends React.Component {
   };
 
   handleDeleteButtonClick = (id) => {
-    const indexToRemove =
-      this.state.columns["column-2"].taskIds.indexOf(id);
-      const newState = this.state;
-      if (indexToRemove !== -1) {
-        newState.columns["column-2"].taskIds.splice(indexToRemove, 1);
-        newState.columns["column-1"].taskIds.push(id);
-      }
+    const indexToRemove = this.state.columns["column-2"].taskIds.indexOf(id);
+    const newState = this.state;
+    if (indexToRemove !== -1) {
+      newState.columns["column-2"].taskIds.splice(indexToRemove, 1);
+      newState.columns["column-1"].taskIds.push(id);
+    }
     this.setState(() => {
       return newState;
     });
-  }
+  };
 
   handleRemoveAllAccountsClick = () => {
     const newState = this.state;
@@ -88,7 +87,7 @@ class App extends React.Component {
     this.setState(() => {
       return newState;
     });
-  }
+  };
 
   onDragStart = (start) => {
     // document.body.style.color = "orange";
@@ -181,8 +180,8 @@ class App extends React.Component {
         [draggableId]: {
           ...this.state.tasks[draggableId],
           selected: false,
-        } 
-      }
+        },
+      },
     };
     this.setState(newState);
   };
@@ -214,6 +213,7 @@ class App extends React.Component {
             onCheckboxChange={this.handleCheckboxChange}
             onDeleteButtonClick={this.handleDeleteButtonClick}
             onRemoveAllAccountsClick={this.handleRemoveAllAccountsClick}
+            search={true}
           />
         </Container>
       </DragDropContext>
