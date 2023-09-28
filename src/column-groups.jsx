@@ -20,6 +20,7 @@ const Container = styled.div`
 const TopHalf = styled.div`
   display: flex;
   height: 616px;
+  // height: ${(props) => (props.search ? "616px" : "641px")}
   flex-direction: column;
   margin: 24px 24px 0 0;
   border-radius: 10px 10px 0 0;
@@ -99,10 +100,10 @@ const GroupInput = styled.input`
 
   /* Desktop + Tablet (MD)/Body/Body 1 */
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 22px; /* 137.5% */
+  line-height: 20px; /* 137.5% */
   flex: 1 0 0;
   margin-bottom: 4px;
 `;
@@ -133,10 +134,10 @@ const GroupSearchInput = styled.input`
 
   /* Desktop + Tablet (MD)/Body/Body 1 */
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 22px; /* 137.5% */
+  line-height: 20px; /* 137.5% */
   margin-bottom: 30px;
 `;
 
