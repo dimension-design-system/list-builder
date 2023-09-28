@@ -89,7 +89,7 @@ const GroupInput = styled.input`
   border: 1px solid var(--neutrals-grey-500, #9e9e9e);
   background: var(--neutrals-grey-00, #fff);
   display: flex;
-  height: 48px;
+  height: 40px;
   padding: 13px 16px;
   align-items: center;
   gap: 8px;
@@ -232,7 +232,7 @@ export default class ColumnGroups extends React.Component {
             {this.props.tasks.length > 0 && (
               <RemoveAllAccounts onClick={this.handleRemoveAllAccountsClick}>
                 <DeleteButton />
-                <span>Remove All Accounts</span>
+                <span>Clear All Accounts</span>
               </RemoveAllAccounts>
             )}
 
