@@ -213,7 +213,7 @@ class App extends React.Component {
             onCheckboxChange={this.handleCheckboxChange}
             onDeleteButtonClick={this.handleDeleteButtonClick}
             onRemoveAllAccountsClick={this.handleRemoveAllAccountsClick}
-            search={true}
+            search={false}
           />
         </Container>
       </DragDropContext>

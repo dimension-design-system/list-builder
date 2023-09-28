@@ -65,7 +65,7 @@ const ActionBarButton = styled.button`
   align-items: center;
   flex: 0;
   padding: 8px;
-  height: 30px;
+  height: 32px;
   color: var(--primary-primary-500, #007db8);
   text-align: center;
   font-family: Roboto;
@@ -146,7 +146,7 @@ const AddToGroupButton = styled.button`
   border-radius: 4px;
   border: 2px solid var(--primary-primary-500, #007db8);
   display: flex;
-  height: 30px;
+  height: 32px;
   padding: 8px;
   justify-content: center;
   align-items: center;
