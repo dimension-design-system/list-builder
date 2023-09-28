@@ -27,6 +27,7 @@ const AccountList = styled.div`
   height: 500px;
   overflow: scroll;
   overflow-x: hidden;
+  padding-bottom: 40px;
 `;
 const ActionBar = styled.div`
   width: -webkit-calc(100% - 12px);
@@ -39,7 +40,7 @@ const ActionBar = styled.div`
   padding: 4px 8px 4px 4px;
   border-radius: 4px;
   background: var(--neutrals-grey-100, #f5f5f5);
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 `;
 const ActionBarSearch = styled.input`
   display: flex;
@@ -90,6 +91,9 @@ const ActionBarSort = styled(ActionBarButton)`
 `;
 const SelectAll = styled.div`
   padding: 8px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 const SelectAllCheckbox = styled.input`
   margin: 0 4px;

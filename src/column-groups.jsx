@@ -32,6 +32,7 @@ const AccountList = styled.div`
   height: 500px;
   overflow: scroll;
   overflow-x: hidden;
+  padding-bottom: 40px;
 `;
 const BottomHalf = styled.div`
   display: flex;
