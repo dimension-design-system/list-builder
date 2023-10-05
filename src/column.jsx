@@ -192,7 +192,7 @@ export default class Column extends React.Component {
 
   get selectAllValue() {
     let selectedCount = 0;
-    const currentTasks = { ...this.state.tasks };
+    const currentTasks = { ...this.props.tasks };
     for (const task in currentTasks) {
       if (currentTasks[task].selected === true) {
         selectedCount++;
@@ -200,7 +200,7 @@ export default class Column extends React.Component {
     }
     if (selectedCount === 0) {
       return false;
-    } else if (selectedCount === this.state.tasks.length) {
+    } else if (selectedCount === this.props.tasks.length) {
       return true;
     } else {
       return null;
@@ -233,7 +233,7 @@ export default class Column extends React.Component {
   render() {
     const { filterValue } = this.state;
 
-    const filteredTasks = Object.values(this.state.tasks).filter((task) =>
+    const filteredTasks = Object.values(this.props.tasks).filter((task) =>
       Object.values(task).some(
         (val) =>
           typeof val === "string" &&
@@ -308,7 +308,7 @@ export default class Column extends React.Component {
           <BottomHalf>
             <TotalAccountsSelected>
               {
-                this.state.tasks.filter((task) => {
+                this.props.tasks.filter((task) => {
                   return !!task.selected;
                 }).length
               }{" "}
