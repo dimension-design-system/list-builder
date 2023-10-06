@@ -90,8 +90,8 @@ class App extends React.Component {
   };
 
   onDragStart = (start) => {
-    // document.body.style.color = "orange";
-    // document.body.style.transition = "background-color 0.2s ease";
+    document.body.style.color = "orange";
+    document.body.style.transition = "background-color 0.2s ease";
 
     const homeIndex = this.state.columnOrder.indexOf(start.source.droppableId);
 
@@ -101,19 +101,19 @@ class App extends React.Component {
   };
 
   onDragUpdate = (update) => {
-    // const { destination } = update;
-    // const opacity = destination
-    //   ? destination.index / Object.keys(this.state.tasks).length
-    //   : 0;
-    // document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
+    const { destination } = update;
+    const opacity = destination
+      ? destination.index / Object.keys(this.state.tasks).length
+      : 0;
+    document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   };
 
   onDragEnd = (result) => {
     this.setState({
       homeIndex: null,
     });
-    // document.body.style.color = "inherit";
-    // document.body.style.backgroundColor = "inherit";
+    document.body.style.color = "inherit";
+    document.body.style.backgroundColor = "inherit";
 
     const { destination, source, draggableId } = result;
 
