@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Account from "./account";
+import SortButton from "./SortButton";
 
 const DebugContainer = styled.div`
   display: flex;
@@ -261,6 +262,7 @@ export default class Column extends React.Component {
                 Sort
                 <img src="data:image/svg+xml,%3csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_1697)'%3e%3cpath d='M4.99996 6.3335L8.33329 9.66683L11.6666 6.3335H4.99996Z' fill='%23007DB8'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_1697'%3e%3crect width='16' height='16' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" />
               </ActionBarSort>
+              <SortButton onSortDirectionChange={handleSortDirectionChange} />
             </ActionBar>
             <SelectAll>
               <SelectAllCheckbox
