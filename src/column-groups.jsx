@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Account from "./account";
 import containerBackgroundImage from "./container-background-image";
+import containerBackgroundImageDrag from "./container-background-image-drag";
 
 const DebugContainer = styled.div`
   display: flex;
@@ -13,7 +14,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) =>
-    Object.keys(props.tasks).length < 1 ? containerBackgroundImage : "none"};
+    Object.keys(props.tasks).length < 1 && props.homeIndex !== null
+      ? containerBackgroundImageDrag
+      : Object.keys(props.tasks).length < 1
+      ? containerBackgroundImage
+      : "none"};
   background-repeat: no-repeat;
   background-position: center 60%;
 `;

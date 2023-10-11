@@ -214,6 +214,7 @@ class App extends React.Component {
             onDeleteButtonClick={this.handleDeleteButtonClick}
             onRemoveAllAccountsClick={this.handleRemoveAllAccountsClick}
             search={false}
+            homeIndex={this.state.homeIndex}
           />
         </Container>
       </DragDropContext>
