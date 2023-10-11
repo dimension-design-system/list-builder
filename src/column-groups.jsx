@@ -14,7 +14,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) =>
-    Object.keys(props.tasks).length < 1 && props.homeIndex !== null
+    Object.keys(props.tasks).length < 1 && props.homeIndex > -1
       ? containerBackgroundImageDrag
       : Object.keys(props.tasks).length < 1
       ? containerBackgroundImage
@@ -221,6 +221,7 @@ export default class ColumnGroups extends React.Component {
     );
     return (
       <DebugContainer>
+        <pre>HELLO: {this.props.homeIndex}</pre>
         <Container tasks={this.props.tasks}>
           <TopHalf>
             <GroupInput placeholder="Group Name"></GroupInput>
