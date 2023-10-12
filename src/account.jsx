@@ -13,9 +13,6 @@ const Container = styled.div`
     background: var(--neutrals-grey-100, #f5f5f5);
     cursor: pointer;
   }
-  &:hover button {
-    visibility: visible;
-  }
 `;
 const CheckBox = styled.input`
   margin: 0 4px;
@@ -100,7 +97,6 @@ const SVBInformation = styled(RowSection)`
   flex: 0;
 `;
 const DeleteButton = styled.button`
-  visibility: hidden;
   width: 20px;
   height: 20px;
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9.99984 1.6665C5.3915 1.6665 1.6665 5.3915 1.6665 9.99984C1.6665 14.6082 5.3915 18.3332 9.99984 18.3332C14.6082 18.3332 18.3332 14.6082 18.3332 9.99984C18.3332 5.3915 14.6082 1.6665 9.99984 1.6665ZM12.1582 6.66649L9.99989 8.82483L7.84156 6.66649L6.66655 7.84149L8.82489 9.99983L6.66655 12.1582L7.84156 13.3332L9.99989 11.1748L12.1582 13.3332L13.3332 12.1582L11.1749 9.99983L13.3332 7.84149L12.1582 6.66649ZM3.3334 9.99981C3.3334 13.6748 6.32507 16.6665 10.0001 16.6665C13.6751 16.6665 16.6667 13.6748 16.6667 9.99981C16.6667 6.32481 13.6751 3.33315 10.0001 3.33315C6.32507 3.33315 3.3334 6.32481 3.3334 9.99981Z' fill='%23007DB8'/%3E%3C/svg%3E%0A");
