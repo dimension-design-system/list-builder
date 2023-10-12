@@ -14,13 +14,17 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) =>
-    Object.keys(props.tasks).length < 1 && props.homeIndex > -1
-      ? containerBackgroundImageDrag
-      : Object.keys(props.tasks).length < 1
-      ? containerBackgroundImage
-      : "none"};
+    Object.keys(props.tasks).length < 1 ? containerBackgroundImage : "none"};
   background-repeat: no-repeat;
   background-position: center 60%;
+  &:hover {
+    background: ${(props) =>
+      Object.keys(props.tasks).length < 1
+        ? containerBackgroundImageDrag
+        : null};
+    background-repeat: no-repeat;
+    background-position: center 60%;
+  }
 `;
 const TopHalf = styled.div`
   display: flex;
