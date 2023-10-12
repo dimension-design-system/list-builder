@@ -4,6 +4,7 @@ import { Droppable } from "react-beautiful-dnd";
 import Account from "./account";
 import SortComponent from "./SortComponent";
 
+const propertyToSortBy = "accountName";
 const DebugContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -170,7 +171,18 @@ export default class Column extends React.Component {
     this.state = {
       filterValue: "",
       tasks: props.tasks,
+      sort: null,
     };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.tasks !== this.props.tasks) {
+      this.setState({ tasks: this.props.tasks }, () => {
+        if (!!this.state.sort) {
+          this.handleSortTasks(this.state.sort, propertyToSortBy);
+        }
+      });
+    }
   }
 
   handleInputChange = (e) => {
@@ -189,7 +201,7 @@ export default class Column extends React.Component {
 
   get selectAllValue() {
     let selectedCount = 0;
-    const currentTasks = { ...this.props.tasks };
+    const currentTasks = { ...this.state.tasks };
     for (const task in currentTasks) {
       if (currentTasks[task].selected === true) {
         selectedCount++;
@@ -197,7 +209,7 @@ export default class Column extends React.Component {
     }
     if (selectedCount === 0) {
       return false;
-    } else if (selectedCount === this.props.tasks.length) {
+    } else if (selectedCount === this.state.tasks.length) {
       return true;
     } else {
       return null;
@@ -224,7 +236,7 @@ export default class Column extends React.Component {
       tasks.reverse();
     }
 
-    this.setState({ tasks: [...tasks] });
+    this.setState({ tasks: [...tasks], sort: order });
   }
 
   render() {
@@ -254,7 +266,7 @@ export default class Column extends React.Component {
               </ActionBarFilter> */}
               <SortComponent
                 onSort={(order) => {
-                  this.handleSortTasks(order, "accountName");
+                  this.handleSortTasks(order, propertyToSortBy);
                 }}
               />
             </ActionBar>
@@ -304,7 +316,7 @@ export default class Column extends React.Component {
           <BottomHalf>
             <TotalAccountsSelected>
               {
-                this.props.tasks.filter((task) => {
+                this.state.tasks.filter((task) => {
                   return !!task.selected;
                 }).length
               }{" "}
