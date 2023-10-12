@@ -4,7 +4,6 @@ import { Droppable } from "react-beautiful-dnd";
 import Account from "./account";
 import SortComponent from "./SortComponent";
 
-const propertyToSortBy = "accountName";
 const DebugContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,6 +29,7 @@ const AccountList = styled.div`
   overflow: scroll;
   overflow-x: hidden;
   padding-bottom: 40px;
+  padding-right: 16px;
 `;
 const ActionBar = styled.div`
   width: -webkit-calc(100% - 12px);
