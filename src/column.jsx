@@ -177,10 +177,10 @@ export default class Column extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.tasks !== this.props.tasks) {
-      this.setState({ tasks: this.props.tasks }, () => {
-        if (!!this.state.sort) {
-          this.handleSortTasks(this.state.sort, propertyToSortBy);
-        }
+      console.log(prevProps.tasks);
+      console.log(this.props.tasks);
+      this.setState({
+        tasks: this.props.tasks,
       });
     }
   }
@@ -201,7 +201,7 @@ export default class Column extends React.Component {
 
   get selectAllValue() {
     let selectedCount = 0;
-    const currentTasks = { ...this.state.tasks };
+    const currentTasks = { ...this.props.tasks };
     for (const task in currentTasks) {
       if (currentTasks[task].selected === true) {
         selectedCount++;
@@ -209,7 +209,7 @@ export default class Column extends React.Component {
     }
     if (selectedCount === 0) {
       return false;
-    } else if (selectedCount === this.state.tasks.length) {
+    } else if (selectedCount === this.props.tasks.length) {
       return true;
     } else {
       return null;
@@ -223,26 +223,15 @@ export default class Column extends React.Component {
       this.props.onSelectAllChange(true);
     }
   };
-  handleSortTasks(order, property) {
-    const { tasks } = this.state;
 
-    tasks.sort((a, b) => {
-      if (a[property] < b[property]) return -1;
-      if (a[property] > b[property]) return 1;
-      return 0;
-    });
-
-    if (order !== "ascending") {
-      tasks.reverse();
-    }
-
-    this.setState({ tasks: [...tasks], sort: order });
-  }
+  handleSortTasks = (order) => {
+    this.props.onSort(order);
+  };
 
   render() {
     const { filterValue } = this.state;
 
-    const filteredTasks = Object.values(this.state.tasks).filter((task) =>
+    const filteredTasks = Object.values(this.props.tasks).filter((task) =>
       Object.values(task).some(
         (val) =>
           typeof val === "string" &&
@@ -266,7 +255,7 @@ export default class Column extends React.Component {
               </ActionBarFilter> */}
               <SortComponent
                 onSort={(order) => {
-                  this.handleSortTasks(order, propertyToSortBy);
+                  this.handleSortTasks(order);
                 }}
               />
             </ActionBar>
@@ -297,7 +286,7 @@ export default class Column extends React.Component {
                   isDraggingOver={snapshot.isDraggingOver}
                 >
                   {filteredTasks.map((task, index) => (
-                    // {this.state.tasks.map((task, index) => (
+                    // {this.props.tasks.map((task, index) => (
                     <Account
                       key={task.id}
                       id={task.id}
@@ -316,7 +305,7 @@ export default class Column extends React.Component {
           <BottomHalf>
             <TotalAccountsSelected>
               {
-                this.state.tasks.filter((task) => {
+                this.props.tasks.filter((task) => {
                   return !!task.selected;
                 }).length
               }{" "}

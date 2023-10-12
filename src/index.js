@@ -12,6 +12,7 @@ const Container = styled.div`
   display: flex;
   font-family: "Roboto", sans-serif;
 `;
+const propertyToSort = "accountName";
 
 class App extends React.Component {
   state = initialData;
@@ -42,6 +43,39 @@ class App extends React.Component {
       return { tasks: updatedCheckboxItems };
     });
   };
+
+  columnsTasks() {
+    return this.state.columns["column-1"].taskIds.map(
+      (taskId) => this.state.tasks[taskId]
+    );
+  }
+
+  handleSortTasks(order) {
+    // Create a copy of the columns object
+    const sortedColumns = { ...this.state.columns };
+    // Sort the taskIds array of the specified column
+    let columnId = "column-1";
+    sortedColumns[columnId].taskIds.sort((a, b) => {
+      const taskA = this.state.tasks[a];
+      const taskB = this.state.tasks[b];
+
+      // Adjust the property you want to sort by (e.g., accountName)
+      const comparisonValue = taskA.accountName.localeCompare(
+        taskB.accountName
+      );
+
+      if (order === "ascending") {
+        return comparisonValue;
+      } else if (order === "descending") {
+        return comparisonValue * -1; // Reverse the order for descending
+      } else {
+        return 0; // No change if `order` is invalid
+      }
+    });
+
+    // Update the state with the sorted columns
+    this.setState({ columns: sortedColumns });
+  }
 
   handleAddToGroupClick = () => {
     const previousStateTasks = this.state.tasks;
@@ -188,12 +222,13 @@ class App extends React.Component {
           <Column
             id={this.state.columns["column-1"].id}
             column={this.state.columns["column-1"]}
-            tasks={this.state.columns["column-1"].taskIds.map(
-              (taskId) => this.state.tasks[taskId]
-            )}
+            tasks={this.columnsTasks()}
             onCheckboxChange={this.handleCheckboxChange}
             onSelectAllChange={this.handleSelectAllChange}
             onAddToGroupClick={this.handleAddToGroupClick}
+            onSort={(order) => {
+              this.handleSortTasks(order);
+            }}
           />
           <ColumnGroups
             id={this.state.columns["column-2"].id}
