@@ -177,8 +177,6 @@ export default class Column extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.tasks !== this.props.tasks) {
-      console.log(prevProps.tasks);
-      console.log(this.props.tasks);
       this.setState({
         tasks: this.props.tasks,
       });
