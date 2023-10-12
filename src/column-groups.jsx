@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 const TopHalf = styled.div`
   display: flex;
-  height: 616px;
+  height: 641px;
   // height: ${(props) => (props.search ? "616px" : "641px")}
   flex-direction: column;
   margin: 24px 24px 0 0;
@@ -221,7 +221,6 @@ export default class ColumnGroups extends React.Component {
     );
     return (
       <DebugContainer>
-        <pre>HELLO: {this.props.homeIndex}</pre>
         <Container tasks={this.props.tasks}>
           <TopHalf>
             <GroupInput placeholder="Group Name"></GroupInput>
