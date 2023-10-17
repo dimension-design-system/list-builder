@@ -309,7 +309,6 @@ export default class ColumnGroups extends React.Component {
             </GroupActionButtonsContainer>
           </BottomHalf>
         </Container>
-        <pre></pre>
       </DebugContainer>
     );
   }

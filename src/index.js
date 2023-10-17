@@ -223,7 +223,6 @@ class App extends React.Component {
         onDragEnd={this.onDragEnd}
       >
         <Container>
-          <pre>huh? {this.state.isDragging.toString()}</pre>
           <Column
             id={this.state.columns["column-1"].id}
             column={this.state.columns["column-1"]}
