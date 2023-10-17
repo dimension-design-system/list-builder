@@ -25,7 +25,7 @@ const SpecialDiv = styled.div`
   height: 430px;
   position: absolute;
   top: 230px;
-  left: 795px;
+  left: 720px;
   border-radius: 4px;
   border: 2px dashed var(--primary-primary-500, #007db8);
   background: var(--primary-primary-100, #f3f9fb);
