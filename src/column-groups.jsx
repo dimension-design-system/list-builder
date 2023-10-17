@@ -161,6 +161,8 @@ const RemoveAllAccounts = styled.div`
   font-weight: 500;
   line-height: 20px; /* 142.857% */
   margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--neutrals-grey-300, #e0e0e0);
 `;
 
 const DeleteButton = styled.button`
