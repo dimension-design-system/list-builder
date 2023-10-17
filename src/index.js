@@ -128,6 +128,7 @@ class App extends React.Component {
 
     this.setState({
       homeIndex,
+      isDragging: true,
     });
   };
 
@@ -138,6 +139,7 @@ class App extends React.Component {
   onDragEnd = (result) => {
     this.setState({
       homeIndex: null,
+      isDragging: false,
     });
 
     const { destination, source, draggableId } = result;
@@ -168,6 +170,7 @@ class App extends React.Component {
 
       const newState = {
         ...this.state,
+        isDragging: false,
         columns: {
           ...this.state.columns,
           [newColumn.id]: newColumn,
@@ -195,6 +198,7 @@ class App extends React.Component {
 
     const newState = {
       ...this.state,
+      isDragging: false,
       columns: {
         ...this.state.columns,
         [newStart.id]: newStart,
@@ -219,6 +223,7 @@ class App extends React.Component {
         onDragEnd={this.onDragEnd}
       >
         <Container>
+          <pre>huh? {this.state.isDragging.toString()}</pre>
           <Column
             id={this.state.columns["column-1"].id}
             column={this.state.columns["column-1"]}
@@ -240,7 +245,7 @@ class App extends React.Component {
             onDeleteButtonClick={this.handleDeleteButtonClick}
             onRemoveAllAccountsClick={this.handleRemoveAllAccountsClick}
             search={false}
-            homeIndex={this.state.homeIndex}
+            isDragging={this.state.isDragging}
           />
         </Container>
       </DragDropContext>

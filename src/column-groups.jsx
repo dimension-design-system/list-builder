@@ -14,17 +14,36 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) =>
-    Object.keys(props.tasks).length < 1 ? containerBackgroundImage : "none"};
+    Object.keys(props.tasks).length < 1
+      ? containerBackgroundImage
+      : containerBackgroundImage};
   background-repeat: no-repeat;
   background-position: center 60%;
-  &:hover {
-    background: ${(props) =>
-      Object.keys(props.tasks).length < 1
-        ? containerBackgroundImageDrag
-        : null};
-    background-repeat: no-repeat;
-    background-position: center 60%;
-  }
+`;
+const SpecialDiv = styled.div`
+  width: 600px;
+  height: 430px;
+  position: absolute;
+  top: 230px;
+  left: 795px;
+  border-radius: 4px;
+  border: 2px dashed var(--primary-primary-500, #007db8);
+  background: var(--primary-primary-100, #f3f9fb);
+  color: var(--primary-primary-500, #007db8);
+  text-align: center;
+
+  /* Desktop + Tablet (MD)/Body/Body 1 Medium */
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 137.5% */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  z-index: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999;
 `;
 const TopHalf = styled.div`
   display: flex;
@@ -228,6 +247,8 @@ export default class ColumnGroups extends React.Component {
     return (
       <DebugContainer>
         <Container tasks={this.props.tasks}>
+          {/* <SpecialDiv>Drop Item Here</SpecialDiv> */}
+          {this.props.isDragging && <SpecialDiv>Drop Item Here</SpecialDiv>}
           <TopHalf>
             <GroupInput placeholder="Group Name"></GroupInput>
             <GroupInputLabel for="group-name">Group Name</GroupInputLabel>

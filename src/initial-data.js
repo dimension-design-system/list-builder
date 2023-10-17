@@ -1,8 +1,10 @@
 const initialData = {
+  isDragging: false,
   tasks: {
     "task-1": {
       id: "task-1",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod tristique nisl, ut malesuada ligula varius eu. Quisque ac hendrerit orci, nec bibendum libero.",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod tristique nisl, ut malesuada ligula varius eu. Quisque ac hendrerit orci, nec bibendum libero.",
       accountName: "Analysis Checking",
       accountNumber: "202049982",
       companyName: "Brown Bear of San Francisco, CA",
@@ -12,7 +14,8 @@ const initialData = {
     },
     "task-2": {
       id: "task-2",
-      content: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat.",
+      content:
+        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat.",
       accountName: "Savings Account",
       accountNumber: "202049983",
       companyName: "Red Fox of New York, NY",
@@ -22,7 +25,8 @@ const initialData = {
     },
     "task-3": {
       id: "task-3",
-      content: "Nulla facilisi. Nulla facilisi. Proin at ultrices nisl. Integer sollicitudin velit non tincidunt elementum.",
+      content:
+        "Nulla facilisi. Nulla facilisi. Proin at ultrices nisl. Integer sollicitudin velit non tincidunt elementum.",
       accountName: "Checking Account",
       accountNumber: "202049984",
       companyName: "Yellow Canary of Los Angeles, CA",
@@ -32,7 +36,8 @@ const initialData = {
     },
     "task-4": {
       id: "task-4",
-      content: "Donec vitae sapien nec mi varius sollicitudin. Vestibulum vitae tellus eu justo vulputate auctor. Nunc a nibh ut urna tempor sollicitudin eu id nisi.",
+      content:
+        "Donec vitae sapien nec mi varius sollicitudin. Vestibulum vitae tellus eu justo vulputate auctor. Nunc a nibh ut urna tempor sollicitudin eu id nisi.",
       accountName: "Money Market",
       accountNumber: "202049985",
       companyName: "Green Frog of Chicago, IL",
@@ -42,7 +47,8 @@ const initialData = {
     },
     "task-5": {
       id: "task-5",
-      content: "Aliquam vitae odio vitae lacus aliquam convallis. Vivamus auctor euismod orci a venenatis. Morbi in sapien eget orci tristique mollis.",
+      content:
+        "Aliquam vitae odio vitae lacus aliquam convallis. Vivamus auctor euismod orci a venenatis. Morbi in sapien eget orci tristique mollis.",
       accountName: "Certificate of Deposit",
       accountNumber: "202049986",
       companyName: "Blue Whale of Seattle, WA",
@@ -52,7 +58,8 @@ const initialData = {
     },
     "task-6": {
       id: "task-6",
-      content: "Vivamus venenatis justo eu nunc interdum, a rhoncus mi laoreet. Sed nec urna ut risus malesuada finibus ut ut tellus.",
+      content:
+        "Vivamus venenatis justo eu nunc interdum, a rhoncus mi laoreet. Sed nec urna ut risus malesuada finibus ut ut tellus.",
       accountName: "IRA Account",
       accountNumber: "202049987",
       companyName: "Orange Tiger of Miami, FL",
@@ -62,7 +69,8 @@ const initialData = {
     },
     "task-7": {
       id: "task-7",
-      content: "Ut malesuada elit ut arcu congue, a congue nulla scelerisque. Nam ac consequat nisi. In consequat ligula sed metus venenatis, ut mollis nulla malesuada.",
+      content:
+        "Ut malesuada elit ut arcu congue, a congue nulla scelerisque. Nam ac consequat nisi. In consequat ligula sed metus venenatis, ut mollis nulla malesuada.",
       accountName: "Home Equity Line of Credit",
       accountNumber: "202049988",
       companyName: "Purple Elephant of Denver, CO",
@@ -72,7 +80,8 @@ const initialData = {
     },
     "task-8": {
       id: "task-8",
-      content: "Phasellus interdum, libero ut congue condimentum, eros urna laoreet dui, nec lacinia urna erat ac quam. Aliquam erat volutpat.",
+      content:
+        "Phasellus interdum, libero ut congue condimentum, eros urna laoreet dui, nec lacinia urna erat ac quam. Aliquam erat volutpat.",
       accountName: "Auto Loan",
       accountNumber: "202049989",
       companyName: "Black Panther of Houston, TX",
@@ -82,7 +91,8 @@ const initialData = {
     },
     "task-9": {
       id: "task-9",
-      content: "Maecenas at arcu vitae libero commodo egestas. Sed imperdiet sapien vel mauris vestibulum, et laoreet odio euismod.",
+      content:
+        "Maecenas at arcu vitae libero commodo egestas. Sed imperdiet sapien vel mauris vestibulum, et laoreet odio euismod.",
       accountName: "Personal Loan",
       accountNumber: "202049990",
       companyName: "White Dove of Boston, MA",
@@ -92,7 +102,8 @@ const initialData = {
     },
     "task-10": {
       id: "task-10",
-      content: "Curabitur lobortis justo non odio fermentum, a interdum elit porttitor. Vivamus vestibulum nisl a dui lacinia, id convallis dolor tristique.",
+      content:
+        "Curabitur lobortis justo non odio fermentum, a interdum elit porttitor. Vivamus vestibulum nisl a dui lacinia, id convallis dolor tristique.",
       accountName: "Credit Card",
       accountNumber: "202049991",
       companyName: "Gray Wolf of San Diego, CA",
@@ -102,7 +113,8 @@ const initialData = {
     },
     "task-11": {
       id: "task-11",
-      content: "Mauris vitae arcu a felis malesuada euismod. Integer eget urna quis elit sagittis fermentum a nec arcu.",
+      content:
+        "Mauris vitae arcu a felis malesuada euismod. Integer eget urna quis elit sagittis fermentum a nec arcu.",
       accountName: "Student Loan",
       accountNumber: "202049992",
       companyName: "Pink Flamingo of Atlanta, GA",
@@ -112,7 +124,8 @@ const initialData = {
     },
     "task-12": {
       id: "task-12",
-      content: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat.",
+      content:
+        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam erat volutpat.",
       accountName: "Investment Account",
       accountNumber: "202049993",
       companyName: "Golden Eagle of Philadelphia, PA",
