@@ -14,7 +14,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: ${(props) =>
-    Object.keys(props.tasks).length < 1 ? containerBackgroundImage : null};
+    Object.keys(props.tasks).length < 1 ? containerBackgroundImage : "none"};
   background-repeat: no-repeat;
   background-position: center 60%;
 `;
