@@ -23,13 +23,13 @@ const TopHalf = styled.div`
   width: 600px;
 `;
 const AccountList = styled.div`
-  border-top: 1px solid var(--neutrals-grey-300, #e0e0e0);
   flex-grow: 1;
   height: 500px;
   overflow: scroll;
   overflow-x: hidden;
   padding-bottom: 40px;
-  padding-right: 16px;
+  padding-right: 10px;
+  margin-right: -24px;
 `;
 const ActionBar = styled.div`
   width: -webkit-calc(100% - 12px);
