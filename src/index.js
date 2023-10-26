@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 const propertyToSort = "accountName";
 
-class App extends React.Component {
+class ListBuilder extends React.Component {
   state = initialData;
 
   handleCheckboxChange = (id, selected) => {
@@ -251,4 +251,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default ListBuilder;
