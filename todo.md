@@ -1,0 +1,2 @@
+- scroll bar padding
+- No more hover delete button

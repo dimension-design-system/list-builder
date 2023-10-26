@@ -3,41 +3,144 @@ import ReactDOM from "react-dom";
 import "@atlaskit/css-reset";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
+
 import initialData from "./initial-data";
 import Column from "./column";
+import ColumnGroups from "./column-groups";
 
 const Container = styled.div`
   display: flex;
+  font-family: "Roboto", sans-serif;
 `;
+const propertyToSort = "accountName";
 
 class App extends React.Component {
   state = initialData;
 
-  onDragStart = (start) => {
-    document.body.style.color = "orange";
-    document.body.style.transition = "background-color 0.2s ease";
+  handleCheckboxChange = (id, selected) => {
+    this.setState((prevState) => {
+      const updatedCheckboxItems = { ...prevState.tasks };
+      for (const taskId in updatedCheckboxItems) {
+        if (taskId === id) {
+          updatedCheckboxItems[id].selected = selected;
+        }
+      }
 
+      return { tasks: updatedCheckboxItems };
+    });
+  };
+
+  handleSelectAllChange = (selectAllBoolean) => {
+    this.setState((prevState) => {
+      const updatedCheckboxItems = { ...prevState.tasks };
+      for (const task in updatedCheckboxItems) {
+        if (selectAllBoolean) {
+          updatedCheckboxItems[task].selected = true;
+        } else {
+          updatedCheckboxItems[task].selected = false;
+        }
+      }
+      return { tasks: updatedCheckboxItems };
+    });
+  };
+
+  columnsTasks() {
+    return this.state.columns["column-1"].taskIds.map(
+      (taskId) => this.state.tasks[taskId]
+    );
+  }
+
+  handleSortTasks(order) {
+    // Create a copy of the columns object
+    const sortedColumns = { ...this.state.columns };
+    // Sort the taskIds array of the specified column
+    let columnId = "column-1";
+    sortedColumns[columnId].taskIds.sort((a, b) => {
+      const taskA = this.state.tasks[a];
+      const taskB = this.state.tasks[b];
+
+      // Adjust the property you want to sort by (e.g., accountName)
+      const comparisonValue = taskA.accountName.localeCompare(
+        taskB.accountName
+      );
+
+      if (order === "ascending") {
+        return comparisonValue;
+      } else if (order === "descending") {
+        return comparisonValue * -1; // Reverse the order for descending
+      } else {
+        return 0; // No change if `order` is invalid
+      }
+    });
+
+    // Update the state with the sorted columns
+    this.setState({ columns: sortedColumns });
+  }
+
+  handleAddToGroupClick = () => {
+    const previousStateTasks = this.state.tasks;
+    let keysToMove = [];
+    for (const taskId in previousStateTasks) {
+      if (previousStateTasks[taskId].selected) {
+        keysToMove.push(taskId);
+      }
+    }
+    const newState = this.state;
+    keysToMove.forEach((item) => {
+      const indexToRemove =
+        this.state.columns["column-1"].taskIds.indexOf(item);
+      if (indexToRemove !== -1) {
+        newState.columns["column-1"].taskIds.splice(indexToRemove, 1);
+        newState.columns["column-2"].taskIds.push(item);
+      }
+      newState.tasks[item].selected = false;
+    });
+    this.setState(() => {
+      return newState;
+    });
+  };
+
+  handleDeleteButtonClick = (id) => {
+    const indexToRemove = this.state.columns["column-2"].taskIds.indexOf(id);
+    const newState = this.state;
+    if (indexToRemove !== -1) {
+      newState.columns["column-2"].taskIds.splice(indexToRemove, 1);
+      newState.columns["column-1"].taskIds.push(id);
+    }
+    this.setState(() => {
+      return newState;
+    });
+  };
+
+  handleRemoveAllAccountsClick = () => {
+    const newState = this.state;
+    newState.columns["column-2"].taskIds.forEach((item) => {
+      newState.columns["column-1"].taskIds.push(item);
+    });
+    newState.columns["column-2"].taskIds = [];
+    this.setState(() => {
+      return newState;
+    });
+  };
+
+  onDragStart = (start) => {
     const homeIndex = this.state.columnOrder.indexOf(start.source.droppableId);
 
     this.setState({
       homeIndex,
+      isDragging: true,
     });
   };
 
   onDragUpdate = (update) => {
     const { destination } = update;
-    const opacity = destination
-      ? destination.index / Object.keys(this.state.tasks).length
-      : 0;
-    document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   };
 
   onDragEnd = (result) => {
     this.setState({
       homeIndex: null,
+      isDragging: false,
     });
-    document.body.style.color = "inherit";
-    document.body.style.backgroundColor = "inherit";
 
     const { destination, source, draggableId } = result;
 
@@ -67,6 +170,7 @@ class App extends React.Component {
 
       const newState = {
         ...this.state,
+        isDragging: false,
         columns: {
           ...this.state.columns,
           [newColumn.id]: newColumn,
@@ -94,10 +198,18 @@ class App extends React.Component {
 
     const newState = {
       ...this.state,
+      isDragging: false,
       columns: {
         ...this.state.columns,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish,
+      },
+      tasks: {
+        ...this.state.tasks,
+        [draggableId]: {
+          ...this.state.tasks[draggableId],
+          selected: false,
+        },
       },
     };
     this.setState(newState);
@@ -111,23 +223,29 @@ class App extends React.Component {
         onDragEnd={this.onDragEnd}
       >
         <Container>
-          {this.state.columnOrder.map((columnId, index) => {
-            const column = this.state.columns[columnId];
-            const tasks = column.taskIds.map(
+          <Column
+            id={this.state.columns["column-1"].id}
+            column={this.state.columns["column-1"]}
+            tasks={this.columnsTasks()}
+            onCheckboxChange={this.handleCheckboxChange}
+            onSelectAllChange={this.handleSelectAllChange}
+            onAddToGroupClick={this.handleAddToGroupClick}
+            onSort={(order) => {
+              this.handleSortTasks(order);
+            }}
+          />
+          <ColumnGroups
+            id={this.state.columns["column-2"].id}
+            column={this.state.columns["column-2"]}
+            tasks={this.state.columns["column-2"].taskIds.map(
               (taskId) => this.state.tasks[taskId]
-            );
-
-            const isDropDisabled = index < this.state.homeIndex;
-
-            return (
-              <Column
-                key={column.id}
-                column={column}
-                tasks={tasks}
-                isDropDisabled={isDropDisabled}
-              />
-            );
-          })}
+            )}
+            onCheckboxChange={this.handleCheckboxChange}
+            onDeleteButtonClick={this.handleDeleteButtonClick}
+            onRemoveAllAccountsClick={this.handleRemoveAllAccountsClick}
+            search={false}
+            isDragging={this.state.isDragging}
+          />
         </Container>
       </DragDropContext>
     );
