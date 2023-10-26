@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "@atlaskit/css-reset";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -252,9 +251,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+export default App;
