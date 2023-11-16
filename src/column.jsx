@@ -28,7 +28,7 @@ const AccountList = styled.div`
   overflow: scroll;
   overflow-x: hidden;
   padding-bottom: 40px;
-  padding-right: 10px;
+  padding-right: 24px;
   margin-right: -24px;
 `;
 const ActionBar = styled.div`
